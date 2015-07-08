@@ -5,4 +5,8 @@ class Post < ActiveRecord::Base
   has_many :tags, :through => :post_tags
 
   validates_presence_of :name, :content
+
+  def tags_attributes=(tag)
+    self.tags.build(:name => tag[:name])
+  end
 end
